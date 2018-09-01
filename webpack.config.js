@@ -6,12 +6,28 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractCSS = new ExtractTextPlugin("vendor.css");
 const bundleOutputDir = "./wwwroot/dist";
 
-module.exports = (env, argv) => {
-	if ((!argv || !argv.mode) && process.env.ASPNETCORE_ENVIRONMENT === "Development") {
-		argv = { mode: "development" };
+module.exports = (env, args) => {
+	let isDevBuild = true;  //Assume isDevBuild;
+
+	//If being run from NPM, args.mode will be populated
+	if (args && args.mode === 'production') {
+		isDevBuild = false;
 	}
-	console.log("mode=", argv.mode);
-	const isDevBuild = argv.mode !== "production";
+
+	//Not production mode from NPM, check on Production mode from Task Runner
+	if (isDevBuild) {
+		//If being run from the Webpack Task Runner in VS.
+		const node_env = process.env.NODE_ENV
+
+		if (node_env) {
+			if (node_env === 'production') {
+				isDevBuild = false;
+			}
+			else {
+			}
+		}
+	}
+	console.log('isDevBuild=' + isDevBuild);
 	const cssLoader = { loader: isDevBuild ? "css-loader" : "css-loader?minimize" };
 	return [{
 		target: "web",
