@@ -46,7 +46,7 @@ module.exports = (env, args) => {
 		module: {
 			rules: [
 				{ test: /\.(woff|woff2)(\?|$)/, loader: "url-loader?limit=1" },
-				{ test: /\.(png|eot|ttf|svg)(\?|$)/, loader: "url-loader?limit=100000" },
+				{ test: /\.(png|eot|ttf|svg|gif|cur)(\?|$)/, loader: "url-loader?limit=100000" },
 				{ test: /\.ts$/i, include: [/ClientApp/, /node_modules/], use: "awesome-typescript-loader" },
 				{ test: /\.html$/i, use: "html-loader" },
 				{ test: /\.css(\?|$)/, include: [/node_modules/], loader: extractCSS.extract([isDevBuild ? 'css-loader' : 'css-loader?minimize']) },

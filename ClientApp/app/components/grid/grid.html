@@ -1,0 +1,11 @@
+﻿<template>
+    <div>
+        <ej-grid e-data-source.two-way="gridData" e-allow-paging=true e-allow-sorting=true e-on-record-click.delegate="recordClick($event.detail)">
+            <ej-column e-field="OrderID" e-header-text="Order ID" e-text-align="right"></ej-column>
+            <ej-column e-field="CustomerID" e-header-text="Customer ID"></ej-column>
+            <ej-column e-field="EmployeeID" e-header-text="Employee ID" e-text-align="right"></ej-column>
+            <ej-column e-field="Freight" e-header-text="Freight" e-format="{0:C}" e-text-align="right"></ej-column>
+            <ej-column e-field="OrderDate" e-header-text="Order Date" e-format="{0:MM/dd/yyyy}" e-text-align="right"></ej-column>
+        </ej-grid>
+    </div>
+</template>

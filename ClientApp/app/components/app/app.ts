@@ -1,5 +1,6 @@
 import { Aurelia, PLATFORM } from "aurelia-framework";
 import { Router, RouterConfiguration } from "aurelia-router";
+import 'syncfusion-javascript/Scripts/ej/web/ej.grid.min';
 
 export class App {
 	configureRouter(config: RouterConfiguration, router: Router) {
@@ -25,6 +26,15 @@ export class App {
 			moduleId: "../fetchdata/fetchdata",
 			nav: true,
 			title: "Fetch data"
-		}]);
+			},
+			{
+				route: 'grid',
+				name: 'grid',
+				settings: { icon: 'th' },
+				moduleId: PLATFORM.moduleName('../grid/grid'),
+				nav: true,
+				title: 'Grid'
+			}
+		]);
 	}
 }
